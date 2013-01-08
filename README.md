@@ -38,6 +38,23 @@ If you wanted to also run some code when the event fired, you could do so like s
 		console.log("I'm attached to the 'delayedchange' event for this element.");
 	});
 
+You could also pass in a callback to execute at the time the event is fired:
+
+	$('textarea').delayedChange(function () {
+		// your code here
+		console.log("I'm being run in a callback.");
+	});
+
+And you can pass the callback along with a different delay time:
+
+	$('textarea').delayedChange({
+		delay: 3500,
+	},
+	function () {
+		// your code here
+		console.log("I'm being run in a callback.");
+	});
+
 ## Contributing
 
 Pull requests for enhancements, improvements, etc. are very welcome.

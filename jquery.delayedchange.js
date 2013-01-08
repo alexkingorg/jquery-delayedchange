@@ -17,7 +17,11 @@
  * limitations under the License.
  */
 (function ($) {
-	$.fn.delayedChange = function (options) {
+	$.fn.delayedChange = function (options, callback) {
+		if ($.isFunction(options)) {
+			callback = options;
+			options = {};
+		}
 		var settings = $.extend({
 			'delay': 2000, // in milliseconds
 		}, options);
@@ -41,6 +45,9 @@
 				callback = setTimeout(function () {
 					// only trigger if value has stablized
 					if ($this.val() == val) {
+						if (callback) {
+							callback.call(this);
+						}
 						$this.trigger('delayedchange');
 					}
 				}, settings.delay);

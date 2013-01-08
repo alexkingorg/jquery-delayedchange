@@ -29,16 +29,20 @@ $('textarea').delayedChange();
 
 If you wanted to attach to only a specific input field and set the delay to 5 seconds instead of the default 2 seconds, you'd do so like this:
 
-	$('#my-input').delayedChange({
-		delay: 5000
-	});
+```js
+$('#my-input').delayedChange({
+	delay: 5000
+});
+```
 
 If you wanted to also run some code when the event fired, you could do so like so (running on the triggered event):
 
-	$('textarea').delayedChange().on('delayedchange', function () {
-		// your code here
-		console.log("I'm attached to the 'delayedchange' event for this element.");
-	});
+```js
+$('textarea').delayedChange().on('delayedchange', function () {
+	// your code here
+	console.log("I'm attached to the 'delayedchange' event for this element.");
+});
+```
 
 ## Contributing
 

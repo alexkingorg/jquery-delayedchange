@@ -23,7 +23,9 @@ When the value of a field remains the same for the specified number of milliseco
 
 If you wanted to enable the delayedChange event for all textareas on the page, you could use this.
 
-	$('textarea').delayedChange();
+```js
+$('textarea').delayedChange();
+```
 
 If you wanted to attach to only a specific input field and set the delay to 5 seconds instead of the default 2 seconds, you'd do so like this:
 

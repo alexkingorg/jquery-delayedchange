@@ -19,7 +19,7 @@
 (function ($) {
 	$.fn.delayedChange = function (options) {
 		var settings = $.extend({
-			'delay': 2000, // in milliseconds
+			'delay': 2000 // in milliseconds
 		}, options);
 		this.each(function () {
 			var timeoutRef, $this = $(this);

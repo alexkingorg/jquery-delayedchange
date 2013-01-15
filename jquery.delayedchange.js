@@ -19,8 +19,9 @@
 (function ($) {
 	$.fn.delayedChange = function (options) {
 		var settings = $.extend({
-			'delay': 2000, // in milliseconds
-			'eventNamespace': undefined
+			delay: 2000, // in milliseconds
+			eventNamespace: undefined,
+			extra: undefined
 		}, options);
 		this.each(function () {
 			var timeoutRef, previousValue, $this = $(this);
@@ -49,7 +50,11 @@
 						if (settings.eventNamespace) {
 							eventName = eventName + '.' + settings.eventNamespace;
 						}
-						$this.trigger(eventName);
+						$this.trigger(eventName, [{
+							delay: settings.delay,
+							eventNamespace: settings.eventNamespace,
+							extra: settings.extra
+						}]);
 					}
 				}, settings.delay);
 			});

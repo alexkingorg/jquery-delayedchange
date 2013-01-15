@@ -28,11 +28,12 @@
 				$this.data('delayedchange-val', $this.val());
 			}
 			$this.on('input propertychange', function () {
+				var val, callback;
 				// handle IE, props: http://stackoverflow.com/questions/5917344/jquery-value-change-event-delay
 				if (window.event && event.type == "propertychange" && event.propertyName != "value") {
 					return;
 				}
-				var val = $this.val();
+				val = $this.val();
 				// if hasn't changed, do nothing
 				if ($this.data('delayedchange-val') == val) {
 					return;

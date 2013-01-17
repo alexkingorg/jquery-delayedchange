@@ -19,30 +19,42 @@
 (function ($) {
 	$.fn.delayedChange = function (options) {
 		var settings = $.extend({
-			'delay': 2000, // in milliseconds
+			delay: 2000, // in milliseconds
+			eventNamespace: undefined,
+			extra: undefined
 		}, options);
 		this.each(function () {
-			var $this = $(this);
+			var timeoutRef, previousValue, $this = $(this);
 			// populate initial values
-			if (typeof $this.data('delayedchange-val') == 'undefined') {
-				$this.data('delayedchange-val', $this.val());
-			}
+			previousValue = $this.val();
 			$this.on('input propertychange', function () {
-				var val, callback;
+				var val;
 				// handle IE, props: http://stackoverflow.com/questions/5917344/jquery-value-change-event-delay
 				if (window.event && event.type == "propertychange" && event.propertyName != "value") {
 					return;
 				}
 				val = $this.val();
 				// if hasn't changed, do nothing
-				if ($this.data('delayedchange-val') == val) {
+				if (previousValue == val) {
 					return;
 				}
-				$this.data('delayedchange-val', val);
-				callback = setTimeout(function () {
+				previousValue = val;
+				if (timeoutRef) {
+					clearTimeout(timeoutRef);					
+				}
+				timeoutRef = setTimeout(function () {
 					// only trigger if value has stablized
+					var eventName = 'delayedchange';
 					if ($this.val() == val) {
-						$this.trigger('delayedchange');
+						timeoutRef = undefined;
+						if (settings.eventNamespace) {
+							eventName = eventName + '.' + settings.eventNamespace;
+						}
+						$this.trigger(eventName, [{
+							delay: settings.delay,
+							eventNamespace: settings.eventNamespace,
+							extra: settings.extra
+						}]);
 					}
 				}, settings.delay);
 			});

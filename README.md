@@ -69,3 +69,18 @@ $('#my-input').delayedChange({
 ## Contributing
 
 Pull requests for enhancements, improvements, etc. are very welcome.
+
+## Version History
+
+**1.1**
+
+Merge [pull request from Justin de Vesine](https://github.com/alexkingorg/jquery-delayedchange/pull/1)
+
+- Remove the previous timeout when no longer useful
+- Allow more than one delayedChange to be usefully registered against a given element by switching to a closure var rather than .data
+- Allow passing a namespace via the settings object
+- Allow passing extra data (which is then passed on through the triggered event) via the settings object
+
+**1.0**
+
+- First public release

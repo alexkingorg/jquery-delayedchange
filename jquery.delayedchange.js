@@ -1,5 +1,5 @@
 /**
- * Delayed Change Event for jQuery - v1.0
+ * Delayed Change Event for jQuery - v1.1
  * A jQuery plugin for triggering a catchable "change" event after edits have stabilized.
  *
  * Copyright 2013 Alex King - http://alexking.org
@@ -40,7 +40,7 @@
 				}
 				previousValue = val;
 				if (timeoutRef) {
-					clearTimeout(timeoutRef);					
+					clearTimeout(timeoutRef);
 				}
 				timeoutRef = setTimeout(function () {
 					// only trigger if value has stablized
